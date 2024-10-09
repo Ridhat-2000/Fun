@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu_Khinch_Meri_Photo</title>
+    <style>
+        #playButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+
+            /* Centering the button */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        #myVideo {
+            display: none;
+            width: 640px;
+            height: 360px;
+            margin: 20px auto;
+
+            /* Centering the button */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+    <body>
+        <video id="myVideo" width="640" height="360" controls>
+            <source src="Tu_Khinch_Meri_Photo.mp4" type="video/mp4">
+        </video>
+        <button id="playButton">Play Video</button>
+
+        <script>
+            var video = document.getElementById('myVideo');
+            var playButton = document.getElementById('playButton');
+
+            playButton.onclick = function()
+            {
+                video.style.display = 'block';
+                if (video.paused) {
+                    video.play();
+                }
+                video.currentTime = 108.5;
+                video.muted = false;
+                video.volume = 1;
+                playButton.style.display = 'none';
+            };
+        </script>
+
+    </body>
+</html>

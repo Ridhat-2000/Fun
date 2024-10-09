@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Div and Play YouTube Video</title>
+    <title>Tu_Khinch_Meri_Photo</title>
     <style>
-        /* Styling for the button */
         #playButton {
             padding: 10px 20px;
             font-size: 16px;
@@ -20,9 +19,9 @@
             transform: translate(-50%, -50%);
         }
 
-        /* Hide the div initially */
-        #hiddenDiv {
-            display: none; /* Initially hidden */
+
+        #myVideo {
+            display: none;
             width: 640px;
             height: 360px;
             margin: 20px auto;
@@ -35,56 +34,28 @@
         }
     </style>
 </head>
-<body>
+    <body>
+        <video id="myVideo" width="640" height="360" controls>
+            <source src="music.mp4" type="video/mp4">
+        </video>
+        <button id="playButton">Play Video</button>
 
-<!-- Div that contains the YouTube player, initially hidden -->
-<div id="hiddenDiv">
-    <!-- YouTube video player iframe -->
-    <div id="player"></div>
-</div>
+        <script>
+            var video = document.getElementById('myVideo');
+            var playButton = document.getElementById('playButton');
 
-<!-- Button to show the div and play the video -->
-<button id="playButton">Play</button>
+            playButton.onclick = function()
+            {
+                video.style.display = 'block';
+                if (video.paused) {
+                    video.play();
+                }
+                video.currentTime = 108.5;
+                video.muted = false;
+                video.volume = 1;
+                playButton.style.display = 'none';
+            };
+        </script>
 
-<script>
-    var player;
-
-    // Load YouTube API script asynchronously
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // This function creates the YouTube player after the API script is loaded
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            height: '360',
-            width: '640',
-            videoId: 'hDU8npxRP9Q', // Replace with your YouTube video ID
-            playerVars: {
-                'autoplay': 0,
-                'controls': 1
-            }
-        });
-    }
-
-    // Get references to the button and the hidden div
-    var playButton = document.getElementById('playButton');
-    var hiddenDiv = document.getElementById('hiddenDiv');
-
-    // Add an event listener to the button to show the div and play the YouTube video
-    playButton.onclick = function() {
-        // Make the div visible
-        hiddenDiv.style.display = 'block';
-        
-        // Hide the button after clicking
-        playButton.style.display = 'none';
-        
-        // Start playing the video from 30 seconds
-        player.seekTo(270); // Adjust the time as needed
-        player.playVideo();
-    };
-</script>
-
-</body>
+    </body>
 </html>
